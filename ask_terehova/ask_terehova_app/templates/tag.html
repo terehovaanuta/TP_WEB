@@ -1,0 +1,11 @@
+{% extends "base_template.html" %}
+
+{% block main %}
+
+<div class="container">
+	<h1>Список вопросов по тэгу {{ tag_text }}</h1>
+	<hr></hr>
+	{% for tag in tags %} #{{question_tag}} {% endfor %}
+	
+</div>
+{% endblock %}

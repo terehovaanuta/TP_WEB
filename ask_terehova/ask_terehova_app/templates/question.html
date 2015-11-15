@@ -1,0 +1,62 @@
+{% extends "base_template.html" %}
+
+{% block main %}
+	<h1>Вопрос № {{ question_id }}</h1>
+	<hr></hr>
+	<div class="media">
+		<div class="media-left">
+			<a href="#"><img src="holder.js/64x64" alt="Мордашка" class="img-circle"></a>
+			<hr></hr>
+			<div class="panel-footer">
+				<button type="button" class="btn btn-primary">
+					<span class="glyphicon glyphicon-thumbs-up">{{question_like}}</span> 
+				</button>
+			</div>				
+		</div>
+		<div class="media-body">
+			<h4 class="media-heading">{{question.title}}<small> {{question.user.user.username}}</small></h4>
+			<div>
+				{{question.text}}
+			</div>
+			<br>
+			<h4 class="media-heading">Тэги: {% for tag in tags %}<small>#{{tag.text}}</small>{% endfor %}</h4>
+		</div>
+	</div>
+	<hr></hr>
+
+	{% for answer in answers %}
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="media">
+					<div class="media-left">
+						<a href="#"><img src="holder.js/64x64" alt="Мордашка" class="img-circle"></a>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">{{answer.title}}<small> от {{answer.user.user.username}}</small></h4>
+						{{answer.text}}
+					</div>
+					<br>
+					<h4 class="media-heading">Тэги: {% for tag in answer.tags %} 
+						<small>#{{tag.text}}</small> {% endfor %}</h4>
+				</div>
+			</div>
+			<div class="panel-footer">
+				<button type="button" class="btn btn-primary">
+					<span class="glyphicon glyphicon-thumbs-up"> {{answer_like}} </span> 
+				</button>
+				<button type="button" class="btn btn-primary">
+					<span class="glyphicon glyphicon-thumbs-down"></span> 
+				</button>
+			</div>
+		</div>			
+		<hr></hr>
+
+	{% endfor %}
+	<form class="form-group">
+		<textarea class="form-control res-vert" rows="10" placeholder="Твой ответ"></textarea>
+		<br>
+		<button class="btn btn-success form-control">
+			Отправить
+		</button>
+	</form>
+{% endblock %}

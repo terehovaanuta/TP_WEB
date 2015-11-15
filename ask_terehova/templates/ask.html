@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+    		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+	    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	    <title>Задай вопрос</title>
+
+	    <!-- Bootstrap -->
+	    <link href="css/bootstrap.min.css" rel="stylesheet">
+	    <link href="css/styles.css" rel="stylesheet">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+  	</head>
+  <body id="body" style='padding-top:100px;'>
+   		
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Навигация</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <br>
+          <a class="navbar-brand" href="index.html">ASK_Terehova</a>
+        </div>
+        <div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li>
+							<br class="hidden-md"><form class="navbar-form navbar-left" role="search">  
+         <form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <input type="text" placeholder="Поиск" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-info">Применить</button>
+            <button class="btn btn-warning" onclick="location.href='ask.html'">Вопросы?</button>
+          </form>
+						</li>
+					</ul>
+					
+					<ul class="nav navbar-nav navbar-right">
+						<li class="hidden-md hidden-sm">
+								<a href="#"><img class="img-circle" data-src="holder.js/64x64" alt="Аватарка"></a>
+
+						</li>
+						<li>
+								<div class="container-fluid user-info">
+									<a class="navbar-brand">Псевдоимя</a>
+									<br>
+									<button class="btn btn-info">Настройки</button>
+									<button type="submit" class="btn btn-danger" onclick="location.href='login.html'">Выйти</button>
+								</div>
+						<li>
+					</ul>
+
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+	<div class="container">
+	<br>
+		<div class="col-md-9">
+			<h1>Новый вопрос</h1>
+			<hr></hr>
+			<form class="form-horizontal">
+				<div class="form-group">
+					<label for="form-1-field" class="col-md-2 control-label">Заголовок</label>
+					<div class="col-md-10" id="form-1-field"><input type="text" class="form-control" placeholder="Заголовок вопроса"></div>
+				</div>
+				<div class="form-group">
+					<label for="form-2-field" class="col-md-2 control-label">Текст</label>
+					<div class="col-md-10" id="form-2-field"><textarea class="form-control" rows="5" placeholder="Введите вопрос"></textarea></div>
+				</div>
+				<div class="form-group">
+					<label for="form-3-field" class="col-md-2 control-label">Тэги</label>
+					<div class="col-md-10" id="form-3-field"><input type="text" class="form-control" placeholder="Ввод тэгов"></div>
+				</div>
+				<div class="col-md-offset-2">
+					<button class="btn btn-success" type="submit" onclick="location.href='question.html'">
+						Отправить
+					</button>
+				</div>
+			</form>
+			<br>
+		</div>
+
+		<div class="col-md-3">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					Популярные теги
+				</div>
+				<div class="panel-body">
+					#Сделатьголосовойпоиск #Идеисправа
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h4>Популярные пользователи</h4>
+				</div>
+				<div class="panel-body">
+					<ul class="media-list">
+						<li><h4><a jref="#">Звезда 1</a></h4></li>
+						<li><h4><a jref="#">Звезда 2</a></h4></li>
+						<li><h4><a jref="#">...</a></h4></li>
+						<li><h4><a jref="#">Звезда N</a></h4></li>
+					</ul>
+				</div>	
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>  </body>
+    <script src="holder_min.js"></script>  
+  </body>
+</html>

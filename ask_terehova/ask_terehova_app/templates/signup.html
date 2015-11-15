@@ -1,0 +1,43 @@
+{% extends "base_template.html" %}
+
+{% block main %}
+	<form class="form-signin" role="form" action="/signup">
+		{% csrf_token %}
+		<h2 class="form-signin-heading">
+			Регистрация
+		</h2>
+		<br>
+		<div class="form-group">
+			<label for="form-1-field" class="col-sm-2 control-label">Логин</label>
+			<div class="col-md-offset-2" id="form-1-field"><input type="text" class="form-control" placeholder="Введите логин"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="form-1-field" class="col-sm-2 control-label">Пароль</label>
+			<div class="col-md-offset-2" id="form-1-field"><input type="text" class="form-control" placeholder="Введите пароль"></div>
+		</div>
+
+		<div class="form-group">
+			<label for="form-1-field" class="col-sm-2 control-label">Подтверждение пароля</label>
+			<div class="col-md-offset-2" id="form-1-field"><input type="text" class="form-control" placeholder="Введите пароль еще раз"></div>
+		</div>
+		
+		<div class="form-group">
+			<label for="form-1-field" class="col-sm-2 control-label">Электронная почта</label>
+			<div class="col-md-offset-2" id="form-1-field">
+				<input type="text" class="form-control" placeholder="Введите электронную почту">
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="form-1-field" class="col-sm-2 control-label">Телефон</label>
+			<div class="col-md-offset-2" id="form-1-field">
+				<input type="text" class="form-control" placeholder="Введите телефон">
+			</div>
+		</div>
+		
+		<div class="col-md-offset-2" id="form-1-field">
+			<button class="btn btn-primary" type="submit" onclick="location.href='index.html'">Отправить</button>
+		</div>
+	</form>
+{% endblock %}

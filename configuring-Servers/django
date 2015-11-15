@@ -1,0 +1,11 @@
+CONFIG = {
+    'mode': 'wsgi',
+    'working_dir': '/home/ann/ask/ask_terehova',
+    'python': '/usr/bin/python',
+    'args': (
+        '--bind=127.0.0.1:8081',
+        '--workers=2',
+        '--timeout=60',
+        'wsgi:application',
+    ),
+}

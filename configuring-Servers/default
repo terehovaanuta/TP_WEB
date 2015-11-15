@@ -1,0 +1,25 @@
+
+server {
+        listen 80 default_server;
+
+        root /usr/share/nginx/html;
+
+        server_name localhost;
+
+        location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        }
+
+        location ~* \.(html|css|js|png|jpe?g)$ {
+        root /home/ann/ask/ask_terehova/static/;
+        expires 180;
+        }
+
+        location ^~ /uploads/ {
+        expires 180;
+        root /home/ann/ask/ask_terehova/;
+        }
+}
+

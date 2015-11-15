@@ -1,0 +1,40 @@
+{% extends "base_template.html" %}
+
+{% block main %}
+	<h1>Список лучших вопросов</h1>
+	{% for question in questions %}
+		<!--{% if question.like > 0 %}-->
+	  		<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="media">
+						<div class="media-left">
+							<a href="#"><img src="holder.js/64x64" alt="Аватар" class="img-circle"></a>
+						</div>
+						<div class="media-body">
+							<h4 class="media-heading">{{ question.title }} <small>{{question.user.user.username}}</small></h4>
+							{{ question.text }} 
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<button type="button" class="btn btn-primary">
+						<span class="glyphicon glyphicon-thumbs-up"></span> 
+							Мне нравится {{ question.like }}
+					</button>				
+					<button type="button" class="btn btn-primary">
+						<span class="glyphicon glyphicon-thumbs-down"></span> 
+							Мне не нравится
+					</button>				
+					<button class="btn btn-default" type="button">
+						Комментарии <span class="badge"> {{ question.answer }}</span>
+					</button>
+					<div class="pull-right hidden-xs">
+						<h4>Тэги: {% for tag in question.tags %} 
+							<small>#{{ tag }}</small> {% endfor %}
+						</h4>
+					</div>
+				</div>
+			</div>
+		<!--{% endif %}-->
+	{% endfor %}
+{% endblock %}
