@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import Http404
 
 from model_manager import ModelManager
 
@@ -104,8 +105,8 @@ def signup(request):
     return render(request, "signup.html")
 
 
-def hot(request, like_question):
-    question_like = modelManager.getLikeQuestion(like_question)
+def hot(request):
+    question_like = modelManager.getLikeQuestion()
     return render_question_page(request, 1, question_like)
 
 def tag(request, tag_text):

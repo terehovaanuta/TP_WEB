@@ -1,5 +1,6 @@
 from models import Profile, Question, Answer, Tag, QuestionLike, AnswerLike
 from django.contrib.auth.models import User, UserManager, AbstractBaseUser
+from django.db.models import Count
 
 class ModelManager:
 
@@ -52,8 +53,7 @@ class ModelManager:
 		question.answer = len(self.getAnswersQuestion(question.id).get('answers'))
 		return question
 
-	def getLikeQuestion(self,question):
-		questionlike = self.qetQuestionLike(question_id)
-		question_like = like.objects.filter(questionlike > 0).order_by('-Questionlike', '-publication_date')
-		return question_like
+	def getLikeQuestion(self):
+		sorted_questions = Question.objects.annotate(likes_count=Count('questionlike')).order_by('-likes_count')
+		return sorted_questions
 		
