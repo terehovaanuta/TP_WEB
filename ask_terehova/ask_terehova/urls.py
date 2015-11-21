@@ -17,22 +17,23 @@ from django.conf.urls import include, url
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from ask_terehova_app.views import *
+#from ask_terehova_app.views import *
+from ask_terehova_app import views
 
 
 urlpatterns = [
-    url(r'^$', main_page),
-    url(r'^pages/(?P<page_number>\d+)', index),
-    url(r'^base/', base),
+    url(r'^$', views.main_page, name="main_page"),
+    url(r'^pages/(?P<page_number>\d+)', views.index, name="index"),
+    url(r'^base/', views.base, name="base"),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^ask/', ask),
-    url(r'^index/', index),
-    url(r'^hot/', hot),
-    url(r'^tag/(?P<tag_text>\w+)', tag),
-    url(r'^tag/', tag),
-    url(r'^login/', login),
-    url(r'^signup/', signup),
-    url(r'^question/(?P<question_id>\d+)', question),
+    url(r'^ask/', views.ask, name="ask"),
+    url(r'^index/', views.index, name="index"),
+    url(r'^hot/', views.hot, name="hot"),
+    url(r'^tag/(?P<tag_text>\w+)', views.tag, name="tag"),
+    url(r'^tag/', views.tag, name="tag"),
+    url(r'^login/', views.login, name="login"),
+    url(r'^signup/', views.signup, name="signup"),
+    url(r'^question/(?P<question_id>\d+)', views.question, name="question"),
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

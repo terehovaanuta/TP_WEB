@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
+from django.core.exceptions import ObjectDoesNotExist
 
 from model_manager import ModelManager
 
@@ -40,11 +41,18 @@ def render_question_page(request, page_number, questions):
     #         'text': 'text' + str(i),
     #     })
 
+    if len(questions) is 0:
+        return render(request, "index.html",{
+            "error_message": "NO such tag"
+            })
+
     for question in questions:
         question = modelManager.questionInfo(question)
         print question.answer # I check some info
 
     page_number = request.GET.get('page')
+    if page_number is not  None:
+        page_number = int(page_number)
     paged_data = paginate(questions, page_number)
     paged_questions = paged_data["questions"]
     pages_amount = paged_data["pages_amount"]
@@ -69,7 +77,12 @@ def index(request, page_number):
    
 def question(request, question_id):
 
-    result = modelManager.getAnswersQuestion(question_id)
+    try:
+        result = modelManager.getAnswersQuestion(question_id)
+    except ObjectDoesNotExist:
+        return render(request, "question.html", {
+                "error_message": 'No such question'
+            })
 
     answers = result["answers"]
    
@@ -89,9 +102,9 @@ def question(request, question_id):
         "question": result['question'], 
         "answers": result['answers'],
         "tags": tags,
-        "tags_answer": tags_answer,
+        #"tags_answer": tags_answer,
         "question_like": question_like,
-        "answer_like": answer_like
+        #"answer_like": answer_like
     })
 
 def ask(request):
