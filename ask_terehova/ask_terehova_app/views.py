@@ -28,27 +28,14 @@ def paginate(list_questions, page_number):
 
 
 def base(request):
-    # modelManager.createProfile()
     return render(request, "base.html")
 
-def render_question_page(request, page_number, questions):
+def render_question_page(request, page_number, questions, template_page):
     
-    # questions = []
-    # for i in xrange(1,30):
-    #     questions.append({
-    #         'title': 'title ' + str(i),
-    #         'id': i,
-    #         'text': 'text' + str(i),
-    #     })
-
     if len(questions) is 0:
-        return render(request, "index.html",{
+        return render(request, template_page,{
             "error_message": "NO such tag"
             })
-
-    for question in questions:
-        question = modelManager.questionInfo(question)
-        print question.answer # I check some info
 
     page_number = request.GET.get('page')
     if page_number is not  None:
@@ -57,10 +44,9 @@ def render_question_page(request, page_number, questions):
     paged_questions = paged_data["questions"]
     pages_amount = paged_data["pages_amount"]
 
-
     list_number_pages = [index for index in xrange(1, pages_amount + 1)]
 
-    return render(request, "index.html", {
+    return render(request, template_page, {
         "questions": paged_questions, 
         "page_number": page_number, 
         "pages_amount": pages_amount,
@@ -70,7 +56,7 @@ def render_question_page(request, page_number, questions):
 
 def main_page(request):
     questions = modelManager.getAllQuestions()
-    return render_question_page(request, 1, questions)
+    return render_question_page(request, 1, questions, 'index.html')
 
 def index(request, page_number):
     return render_question_page(request, page_number)
@@ -78,34 +64,16 @@ def index(request, page_number):
 def question(request, question_id):
 
     try:
-        result = modelManager.getAnswersQuestion(question_id)
+        result = modelManager.getQuestionById(question_id)
     except ObjectDoesNotExist:
         return render(request, "question.html", {
                 "error_message": 'No such question'
             })
 
-    answers = result["answers"]
-   
-    for answer in answers:
-        tags_answer = modelManager.getAnswerTags(answer.id)
-        answer.tags = tags_answer
-    tags = modelManager.getQuestionTags(question_id)
-
-    question_like = modelManager.getQuestionLike(question_id)
-    
-    for answer in answers:
-        answer_like = modelManager.getAnswerLike(answer.id)
-        answer.like = answer_like
-    
     return render(request, "question.html", {
         "question_id": question_id, 
-        "question": result['question'], 
-        "answers": result['answers'],
-        "tags": tags,
-        #"tags_answer": tags_answer,
-        "question_like": question_like,
-        #"answer_like": answer_like
-    })
+        "question": result, 
+        })
 
 def ask(request):
     return render(request, "ask.html")
@@ -120,7 +88,7 @@ def signup(request):
 
 def hot(request):
     question_like = modelManager.getLikeQuestion()
-    return render_question_page(request, 1, question_like)
+    return render_question_page(request, 1, question_like, "hot.html")
 
 def tag(request, tag_text):
     question_tag = modelManager.getTagQuestion(tag_text)   

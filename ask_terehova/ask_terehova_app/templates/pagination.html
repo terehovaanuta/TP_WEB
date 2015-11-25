@@ -1,0 +1,16 @@
+<ul class="pagination">
+	{% for number_index in list_number_pages %}
+		
+		{% if page_number == number_index %}
+			<li class="active">
+				<a href="{% url page_name %}?page={{ number_index }}">{{number_index}}</a>
+			</li>
+			
+
+		{% else %}
+			<li>
+				<a href="{% url page_name %}?page={{ number_index }}">{{number_index}}</a>
+			</li>
+		{% endif %}
+	{% endfor %}
+</ul>
